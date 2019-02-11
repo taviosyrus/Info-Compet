@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { ConnectionComponent } from './connection/connection.component';
 import { RegleComponent } from './regle/regle.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
+import { ProfilUtiComponent } from './profil-uti/profil-uti.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,13 @@ import { FooterComponent } from './footer/footer.component';
     ConnectionComponent,
     RegleComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProfilAdminComponent,
+    ProfilUtiComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path: 'inscription',
@@ -33,6 +39,16 @@ import { FooterComponent } from './footer/footer.component';
         path: 'connection',
         component: ConnectionComponent
       },
+      
+      {
+        path: 'uti',
+        component: ProfilUtiComponent
+      },
+      {
+        path: 'admin',
+        component: ProfilAdminComponent
+      },
+
       {
         path: 'competition',
         component: CompetitionComponent

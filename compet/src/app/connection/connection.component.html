@@ -9,27 +9,41 @@
             </h4>
           </div>
           <div class="card-body">
-
-
-            <form action="#" method="POST" class="px-lg-4">
-              <div class="input-group input-group--focus mb-3">
-                <input type="text" class="form-control glyphicon" placeholder="&#x2709; Email">
+            <form name="form" ng-submit="login()" role="form">
+              <div class="form-group">
+                <label for="username">Username </label>
+                <i class="fa fa-key"></i>
+                <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is
+                  required</span>
               </div>
-              <div class="input-group input-group--focus mb-3">
-                <input type="password" class="form-control glyphicon" placeholder="&#xe033; Mot de passe">
-                <button type="button" class="btn btn-default btn-sm">
-                  <span class="glyphicon glyphicon-eye-open"></span> Afficher le mot de passe
-                </button>
+
+              <div class="form-group">
+                <label for="password">Password </label>
+                <i class="fa fa-lock"></i>
+                <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is
+                  required</span>
               </div>
+
+              <!-- Type Block -->
+              <div>
+                <select>
+                  <option value="../profil-uti.component.html">Utilisateur</option>
+                  <option value="../profil-admin.component.html">Administrateur</option>
+                </select>
+              </div>
+
               <div class="d-md-flex justify-content-between my-4">
                 <label class="ec-checkbox check-sm my-2 clearfix">
                   <input type="checkbox" name="checkbox">
                   <span class="ec-checkbox__control"></span>
                   <span class="ec-checkbox__lebel">Se souvenir de moi</span>
                 </label>
-                <a href="page-recover-password.html" class="text-primary my-2 d-block">Mot de passe oublie ?</a>
+
+                <a href="#" class="text-primary my-2 d-block">Mot de passe oublie ?</a>
               </div>
-              <button class="btn btn-block btn-primary">S'identifier</button>
+              <button class="btn btn-block btn-primary" type="submit">S'identifier</button>
               <p class="my-5 text-center">
                 Pas de compte ? <a href="inscription" class="text-primary">S'inscrire</a>
               </p>

@@ -1,0 +1,23 @@
+.custom-row {
+	margin: 20px 15px;
+	padding: 30px 20px 20px 10px;
+	text-align: left;
+	
+}
+
+.control-label {
+	padding-top: 5px;
+}
+
+.checkbox {
+	margin-left: 5%;
+}
+
+.ng-valid[required]{
+    border: 1px solid green;
+    color: green;
+}
+.ng-invalid:not(form){
+    border: 1px solid red;
+    color: red;
+}

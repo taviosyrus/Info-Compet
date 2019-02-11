@@ -13,7 +13,7 @@ export class CompetitionComponent implements OnInit {
   constructor(private http: Http) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8090/competitions').subscribe(Response => {
+    this.http.get('http://localhost:8090/personnes').subscribe(Response => {
       console.log(Response.json());
 
       this.data = Response.json();

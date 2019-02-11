@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Con } from '../Connection';
 
 @Component({
   selector: 'app-connection',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
+
+  users = new Con('guigui9531free@gmail.com', 'AzertyU');
+  type = ['Utilisateur', 'Administrateur'];
 
   constructor() { }
 
