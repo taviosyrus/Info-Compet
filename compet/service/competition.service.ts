@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { HttpModule } from '@angular/http';
 import { Competition } from 'src/app/classe/competition';
+import { Organisateur } from 'src/app/classe/organisateur';
 
 
 @Injectable({
@@ -18,6 +19,14 @@ export class CompetitionService {
   getCompetitions() {
     return this.http.get(AttribGlob.BASE_API_URL+'/competition');
   }
+
+  getCompetitions_voir() {
+    return this.http.get(AttribGlob.BASE_API_URL+'/competition_voir');
+  }
+  getCompetitions_voir_categorie(libelle:string) {
+    return this.http.get(AttribGlob.BASE_API_URL+'/competition_voir_categorie/'+libelle);
+  }
+  
 
   getCompetitionById(id_Comp: number) {
     return this.http.get<Competition>(AttribGlob.BASE_API_URL + '/'+this.routename+'/' + id_Comp);
@@ -34,5 +43,14 @@ export class CompetitionService {
 
   deleteCompetition(id_Comp:number) {
     return this.http.delete(AttribGlob.BASE_API_URL + '/'+this.routename+'/' + id_Comp);
+  }
+
+    ////autre
+    getOrganisateurById2(id_Comp: number) {
+      return this.http.get<Organisateur>(AttribGlob.BASE_API_URL + '/route_organisateur_detail/' + id_Comp);
+    }
+
+  getNbreParticipant(id_Comp: number) {
+    return this.http.get<Competition>(AttribGlob.BASE_API_URL + '/route_nbre_participant/' + id_Comp);
   }
 }

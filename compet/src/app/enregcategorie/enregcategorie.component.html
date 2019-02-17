@@ -3,42 +3,11 @@
     <h2 class="text-white">
       Gestion des categories
     </h2>
+    <ol class="breadcrumb breadcrumb-double-angle text-white bg-transparent p-0">  
+        <li class="breadcrumb-item" ><a href="#" data-toggle="modal" data-target="#modal__Scrolling-long">Nouvelle categorie</a></li>
+      </ol>
   </div>
 </div>
-<section class="padding-y-0 border-bottom border-center">
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="form-basic" role="tabpanel">
-      <div class="padding-y-0">
-        <div class="container">
-          <div class="row mt-5">
-           <div class="col-12 text-center my-5">
-             <h4>
-               Gestion des categories
-             </h4>
-           </div>
-           <div>
-             <form #Form="ngForm" (ngSubmit)="onSubmit()">
-            <div class="col-12 mx-auto">
-              <div class="row form-group">
-                <label for="example-text-input" class="col-2 col-form-label text-left">Nom</label>
-                <div class="col-10">
-                  <input class="form-control" type="text" [(ngModel)]="categorie.libelle"  placeholder="Libelle de la categorie" name="libelle"  id="libelle">
-                </div>
-              </div>
-              <div class="row form-group">
-                  <button class="btn btn-secondary active mr-2 mb-3">Annuler</button>
-                  <button class="btn btn-primary active mr-2 mb-3" type="submit" >Valider</button>
-              </div>
-            </div>
-          </form>
-           </div>
-          </div> <!-- END row-->
-        </div> <!-- END container-->
-      </div>
-    </div>
-  </div> <!-- END tab-content-->
-</section> <!-- END section-->
-
 
 <div style="margin: auto; width:70%">
   <br>
@@ -53,19 +22,16 @@
         <tr *ngFor = "let value of catedata">
             <td>{{value.libelle}}</td>
             <td>
-              <button class="btn btn-info btn-xs mr-3 mb-3" type="button" >Modfier</button>
+                <button class="btn btn-warning btn-xs mr-3 mb-3">Modifer</button>
             </td>
             <td>
               <button class="btn btn-danger btn-xs mr-3 mb-3" type="button" 
               data-toggle="modal" data-target="#modal__small"  (click)="deleteModal(value)" >Supprimer</button>
             </td>
           </tr>
- 
   </tbody>
   </table>
 </div>
-
-
  <!-- Modal small-->
  <div class="modal fade" id="modal__small" tabindex="-1" role="dialog" aria-labelledby="modal__small" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
@@ -87,4 +53,36 @@
     </div>
   </div>
     
-   
+     <!-- Modal Scrolling long-->
+<div class="modal fade" id="modal__Scrolling-long" tabindex="-1" role="dialog" aria-labelledby="modal__Scrolling-long" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier un organisateur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="ti-close font-size-14"></i>
+          </button>
+        </div>
+        <div class="modal-body py-4">
+            <div>
+                <div>
+                    <form #Form="ngForm" (ngSubmit)="onSubmit()">
+                   <div class="col-12 mx-auto">
+                     <div class="row form-group">
+                       <label for="example-text-input" class="col-2 col-form-label text-left">Nom</label>
+                       <div class="col-10">
+                         <input class="form-control" type="text" [(ngModel)]="categorie.libelle"  placeholder="Libelle de la categorie" name="libelle"  id="libelle">
+                       </div>
+                     </div>
+                     <div class="row form-group">
+                         <button class="btn btn-secondary active mr-2 mb-3" data-dismiss="modal">Annuler</button>
+                         <button class="btn btn-primary active mr-2 mb-3" type="submit" data-dismiss="modal" >Valider</button>
+                     </div>
+                   </div>
+                 </form>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>

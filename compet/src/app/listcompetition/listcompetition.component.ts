@@ -28,11 +28,9 @@ export class ListcompetitionComponent implements OnInit {
   }
 
   detail(id:number){
-    this.competitionservice.getCompetitionById(id).subscribe(data=>{
-     console.log(data);
-
-    })
-
+    localStorage.removeItem("idComp");
+    localStorage.setItem("idComp",id.toString());
+    this.router.navigate(['detailcompetition'])
   }
 
  deleteModal(id:string){

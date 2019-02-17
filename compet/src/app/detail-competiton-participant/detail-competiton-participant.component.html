@@ -39,11 +39,13 @@
               <i class="ti-google"></i>
             </a>
           </li>
-        </ul>
+        </ul>  
+        <button class="btn btn-pill btn-success mr-2 mb-3" (click)="postuler()">Postuler</button>
       </div>
    </div> <!-- END row-->
   </div>
 </section>
+
 <section class="paddingBottom-100"  *ngFor = "let nbre_participant of nbre_participant">
   <div class="container"  *ngFor = "let detailcompetition of detailcompetition">
    <div class="row">
@@ -87,8 +89,6 @@
         <div class="ec-video-container my-4">
           <iframe src="https://www.youtube.com/embed/nrJtHemSPW4?rel=0"></iframe>
         </div>
-        
-     
         <div class="card padding-30 shadow-v3">
           <h4>
             Detail

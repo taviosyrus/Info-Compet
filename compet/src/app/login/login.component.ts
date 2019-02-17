@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   loginUser(event){
     event.preventDefault()
     const target=event.target
-    const pseudo =target.querySelector('#pseudo').value
+    const email =target.querySelector('#email').value
     const password =target.querySelector('#password').value
-    this.Auth.getUserDeatil(pseudo,password).subscribe(data => {
+    this.Auth.getUserDeatil(email,password).subscribe(data => {
       console.log('etat'   +data)
     //   if(data.success){
     //    // this.router.navigate([`./listparticipant`]);
@@ -31,7 +31,14 @@ export class LoginComponent implements OnInit {
     //   }
     })
 
-    console.log(pseudo,password)
+    console.log(email,password)
+
+  }
+
+ 
+  inscription(){
+
+    this.router.navigate(['inscription']);
 
   }
 

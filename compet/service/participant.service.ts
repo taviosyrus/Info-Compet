@@ -21,16 +21,25 @@ export class ParticipantService {
     return this.http.get<Participant>(AttribGlob.BASE_API_URL + '/'+this.routename+'/' + id_Pers);
   }
 
-  createCategorie(participant: Participant) {
+  createParticipant(participant: Participant) {
     console.log(participant);
     return this.http.post(AttribGlob.BASE_API_URL+'/'+this.routename, participant);
   }
 
-  updateCategorie(participant: Participant) {
+  updateParticipant(participant: Participant) {
     return this.http.put(AttribGlob.BASE_API_URL + '/'+this.routename+'/' + participant.id_Pers, Participant);
   }
 
-  deleteCategorie(id_Pers:number) {
+  updateParticipantetat(id_Pers:number,etat:number) {
+    return this.http.put(AttribGlob.BASE_API_URL + '/participant_etat/' + id_Pers+'/'+etat,Participant);
+  }
+  
+
+  deleteParticipant(id_Pers:number) {
     return this.http.delete(AttribGlob.BASE_API_URL + '/'+this.routename+'/' + id_Pers);
   }
+  getParticipantById2(id_Pers: number) {
+    return this.http.get<Participant>(AttribGlob.BASE_API_URL + '/route_participant_competition/' + id_Pers);
+  }
+  
 }

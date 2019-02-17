@@ -6,11 +6,11 @@ import { OrganisateurService } from 'service/organisateur.service';
 
 
 @Component({
-  selector: 'app-detailorganisateur',
-  templateUrl: './detailorganisateur.component.html',
-  styleUrls: ['./detailorganisateur.component.css']
+  selector: 'app-detailgadmin',
+  templateUrl: './detailgadmin.component.html',
+  styleUrls: ['./detailgadmin.component.css']
 })
-export class DetailorganisateurComponent implements OnInit {
+export class DetailgadminComponent implements OnInit {
   detailparticipant;
   listinfocompetition;
   id_send;

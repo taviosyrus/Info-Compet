@@ -27,15 +27,15 @@
             <td>{{val.mail_Pers}}</td>
             <td>{{val.pseudo}}</td>
           
-            <td>
-              <button  class="btn btn-danger btn-xs mr-3 mb-3"   type="button" 
-              data-toggle="modal" data-target="#modal__small" >Desactive</button>
-              <button class="btn btn-primary btn-xs mr-3 mb-3" type="button" 
-              data-toggle="modal" data-target="#modal__small" >Active</button>
-            </td>
+            <td >
+                <button *ngIf="val.etat==0" class="btn btn-danger btn-xs mr-3 mb-3"   type="button" 
+                data-toggle="modal" data-target="#modal__small"  (click)="etatModal(val)">Desactive</button>
+                <button *ngIf="val.etat==1" class="btn btn-primary btn-xs mr-3 mb-3" type="button" 
+                data-toggle="modal" data-target="#modal__small"  (click)="etatModal(val)">Active</button>
+              </td>
+  
 
-
-            <td><button class="btn btn-info btn-xs mr-3 mb-3" ><a [routerLink] = "['../detailparticipant',val.id_Pers]" >Detail</a></button></td>
+            <td><button class="btn btn-info btn-xs mr-3 mb-3" (click)="detail(val.id_Pers)">Detail</button></td>
    
       
           </tr>
@@ -60,7 +60,7 @@
         </div>
         <div class="modal-footer py-4">
           <button type="button" class="btn btn-danger" data-dismiss="modal">NON</button>
-          <button type="button" class="btn btn-success">OUI</button>
+          <button type="button" class="btn btn-success" (click)="etat(id_Pers)">OUI</button>
         </div>
       </div>
     </div>

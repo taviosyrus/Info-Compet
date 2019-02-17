@@ -18,6 +18,7 @@
       <th>Categorie</th>
       <th>Condition(s)</th>
       <th>Detail</th>
+      <th>Modifier</th>
       <th>Suppression</th>
       </tr>
       <tbody >
@@ -28,6 +29,7 @@
               <td>{{value.libelle}}</td>
               <td>{{value.conditions}}</td>
               <td><button class="btn btn-info btn-xs mr-3 mb-3" (click)="detail(value.id_Comp)" >Detail</button></td>
+              <td><button class="btn btn-warning btn-xs mr-3 mb-3">Modifer</button></td>
               <td><button class="btn btn-danger btn-xs mr-3 mb-3"  type="button" 
                 data-toggle="modal" data-target="#modal__small" (click)="deleteModal(value)">Supprimer</button></td>
             </tr>

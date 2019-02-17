@@ -20,6 +20,13 @@ import { EnregorganisateurComponent } from './enregorganisateur/enregorganisateu
 import { LoginComponent } from './login/login.component';
 import { EnregcategorieComponent } from './enregcategorie/enregcategorie.component';
 import { ValidecompetComponent } from './validecompet/validecompet.component';
+import { ListadminComponent } from './listadmin/listadmin.component';
+import { EnregadminComponent } from './enregadmin/enregadmin.component';
+import { DetailgadminComponent } from './detailgadmin/detailgadmin.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { ListecompetParticipantComponent } from './listecompet-participant/listecompet-participant.component';
+import { DetailCompetitonParticipantComponent } from './detail-competiton-participant/detail-competiton-participant.component';
+import { PostulerCompetComponent } from './postuler-compet/postuler-compet.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,14 @@ import { ValidecompetComponent } from './validecompet/validecompet.component';
     EnregorganisateurComponent,
     LoginComponent,
     EnregcategorieComponent,
-    ValidecompetComponent
+    ValidecompetComponent,
+    ListadminComponent,
+    EnregadminComponent,
+    DetailgadminComponent,
+    InscriptionComponent,
+    ListecompetParticipantComponent,
+    DetailCompetitonParticipantComponent,
+    PostulerCompetComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +77,10 @@ import { ValidecompetComponent } from './validecompet/validecompet.component';
               path: 'enregcompetition',
               component: EnregcompetitionComponent
               },
-              {path: 'detailparticipant/:id',
+              {path: 'detailparticipant',
                 component: DetaiparticipantComponent
                 },
-                {path: 'detailcompetition/:id',
+                {path: 'detailcompetition',
                   component: DetailcompetitionComponent
                   },
                   {path: 'listeorganisateur',
@@ -85,9 +99,40 @@ import { ValidecompetComponent } from './validecompet/validecompet.component';
                       component: ValidecompetComponent
                       }
                       ,
-                  {path: 'detailorganisateur/:id',
+                  {path: 'detailorganisateur',
                     component: DetailorganisateurComponent
                     }
+                    ,
+                  {path: 'listadmin',
+                    component: ListadminComponent
+                    }
+                    ,
+                  {path: 'enregadmin',
+                    component: EnregadminComponent
+                    } ,
+                    {path: 'detailadmin',
+                      component: DetailgadminComponent
+                      }
+                      ,
+                      {path: 'validecompet',
+                        component: ValidecompetComponent
+                        }
+                        ,
+                        {path: 'inscription',
+                          component: InscriptionComponent
+                          },
+                          {path: 'listedescompetiton',
+                            component: ListecompetParticipantComponent
+                            }
+
+                            ,
+                          {path: 'detail_compet_participant',
+                            component: DetailCompetitonParticipantComponent
+                            }
+                            ,
+                          {path: 'postuler_compet',
+                            component: PostulerCompetComponent
+                            }
     ])
   ],
   providers: [],

@@ -57,14 +57,30 @@ app.delete('/competition/:id_Comp', function (req, res) {
 
 app.get('/competition', function (req, res) {
    console.log(req);
-   connexion.query('select competition.id_Comp,competition.nom_Comp,competition.description,categorie.libelle,competition.conditions,competition.id_Categ from competition,categorie where competition.id_Categ=categorie.id_Categ', function (error, results, fields) {
+   connexion.query('select competition.id_Comp,competition.nom_Comp,competition.description,categorie.libelle,competition.conditions,competition.id_Categ from competition,categorie,organiser where competition.id_Categ=categorie.id_Categ and organiser.id_Comp=competition.id_Comp ', function (error, results, fields) {
       if (error) throw error;
       res.end(JSON.stringify(results));
     });
  });
 
+ app.get('/competition_voir', function (req, res) {
+   console.log(req);
+   connexion.query('select competition.id_Comp,competition.nom_Comp,competition.description,categorie.libelle,competition.conditions,competition.id_Categ from competition,categorie,organiser where competition.id_Categ=categorie.id_Categ and competition.etat=1 and organiser.id_Comp=competition.id_Comp ', function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+ });
 
- // GET
+ app.get('/competition_voir_categorie/:libelle', function (req, res) {
+   console.log(req);
+   connexion.query('select competition.id_Comp,competition.nom_Comp,competition.description,categorie.libelle,competition.conditions,competition.id_Categ from competition,categorie,organiser where competition.id_Categ=categorie.id_Categ and competition.etat=1 and organiser.id_Comp=competition.id_Comp and categorie.libelle=?',[req.params.libelle], function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+ });
+
+ 
+
  app.get('/competition/:id', function (req, res) {
    connexion.query('select competition.id_Comp,competition.description,competition.nom_Comp,competition.conditions,categorie.libelle ,organisateur.nom_Pers,organisateur.prenom_Pers,organisateur.mail_Pers,organiser.date_debut,organiser.date_fin from competition,categorie,organiser,organisateur where competition.id_Categ=categorie.id_Categ and organisateur.id_Pers=organiser.id_Pers and organiser.id_Comp=competition.id_Comp and competition.id_Comp=?', [req.params.id], function (error, results, fields) {
       if (error) throw error;
@@ -80,6 +96,24 @@ app.post('/competition', function (req, res) {
       res.end(JSON.stringify(results));
     });
  });
+
+ app.get('/route_organisateur_detail/:id_Comp', function (req, res) {
+   connexion.query('select organisateur.id_Pers,organisateur.nom_Pers, organisateur.prenom_Pers,organisateur.mail_Pers from competition,organisateur,organiser where organisateur.id_Pers=organiser.id_Pers and organiser.id_Comp=competition.id_Comp and competition.id_Comp=?', [req.params.id_Comp], function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+ });
+
+
+   //..////// nombre de participant par competition
+   app.get('/route_nbre_participant/:id_Comp', function (req, res) {
+      connexion.query('select COUNT(participer.id_Pers) as nbre from participer where participer.id_Comp=?', [req.params.id_Comp], function (error, results, fields) {
+         if (error) throw error;
+         res.end(JSON.stringify(results));
+       });
+    });
+    
+   
  ////fin competition
 
 
@@ -180,6 +214,19 @@ app.get('/participant', function (req, res) {
      });
  });
 
+
+ 
+ app.put('/participant_etat/:id_Pers/:etat', function (req, res) {
+   console.log(" ----------- "+req.body.id_Pers);
+   connexion.query('UPDATE participant SET etat=? WHERE id_Pers=?', [req.params.etat,req.params.id_Pers], function (error, results, fields) {
+
+      if (error) {res.end('non');
+       
+      }else{res.end('oui');}
+  
+    });
+});
+
 ///fin participant
 
 /////organisateur
@@ -209,6 +256,21 @@ app.get('/organisateur', function (req, res) {
   });
  
  
+
+  
+
+  app.put('/organisateur_etat/:id_Pers/:etat', function (req, res) {
+   console.log(" ----------- "+req.body.id_Pers);
+   connexion.query('UPDATE  organisateur SET etat=? WHERE id_Pers=?', [req.params.etat,req.params.id_Pers], function (error, results, fields) {
+
+      if (error) {res.end('non');
+       
+      }else{res.end('oui');}
+  
+    });
+});
+
+
  
   app.delete('/organisateur/:id_Pers', function (req, res) {
     console.log(" ----------- "+req.body.id_Pers);
@@ -216,18 +278,15 @@ app.get('/organisateur', function (req, res) {
        // if (error) throw error;
        // res.end('Opération effectuée avc succès!');
  
-       if (error) {
+       if (error) {res.end('non');
         
-          res.end('non');
-        
-       }else{
-         
-          res.end('oui');
-       
-       }
+       }else{res.end('oui');}
    
      });
  });
+
+
+
 
 ///fin organisateur
 
@@ -310,21 +369,7 @@ app.get('/personne', function (req, res) {
   app.delete('/personne/:id_Pers', function (req, res) {
     console.log(" ----------- "+req.body.id_Pers);
     connexion.query('DELETE FROM personne WHERE id_Pers=?', [req.params.id_Pers], function (error, results, fields) {
-       // if (error) throw error;
-       // res.end('Opération effectuée avc succès!');
- 
-       if (error) {
-        
-          res.end('non');
-        
-       }else{
-         
-          res.end('oui');
-       
-       }
-   
-     });
- });
+       if (error) {res.end('non'); }else{res.end('oui');}});});
 
 ///fin personne
 
@@ -355,23 +400,9 @@ app.get('/personne', function (req, res) {
 
 
  // GET
- app.get('/route_organisateur_detail/:id_Comp', function (req, res) {
-   connexion.query('select organisateur.id_Pers,organisateur.nom_Pers, organisateur.prenom_Pers,organisateur.mail_Pers from competition,organisateur,organiser where organisateur.id_Pers=organiser.id_Pers and organiser.id_Comp=competition.id_Comp and competition.id_Comp=?', [req.params.id_Comp], function (error, results, fields) {
-      if (error) throw error;
-      res.end(JSON.stringify(results));
-    });
- });
 
  
 
-  // nombre de participant par competition
-  app.get('/route_nbre_participant/:id_Comp', function (req, res) {
-   connexion.query('select COUNT(participer.id_Pers) as nbre from participer where participer.id_Comp=?', [req.params.id_Comp], function (error, results, fields) {
-      if (error) throw error;
-      res.end(JSON.stringify(results));
-    });
- });
- 
 
 
 
@@ -397,18 +428,7 @@ app.post('/login', function (req, res) {
     
    connexion.query('select id_Pers from administrateur where pseudo=? and password=?', [postData.pseudo,postData.password], function (error, results, fields) {
       if (error) throw error;
-     
-      if(results.id_Pers!=0){
-         
-         res.end(JSON.stringify(results));
-     
-      }else{
-      
-      }
-   
-    });
- 
- });
+      if(results.id_Pers!=0){ res.end(JSON.stringify(results));}else{ }});});
 
 
  /////
